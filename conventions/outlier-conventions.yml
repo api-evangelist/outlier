@@ -1,0 +1,42 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.outlier.org/llms.txt
+notes: >-
+  Cross-cutting semantics for the Outlier Shopify storefront's agent surface.
+  Captured verbatim from the store's published llms.txt / agents.md; no
+  idempotency contract is documented, so no Idempotency pointer is emitted.
+authentication:
+  style: >-
+    OpenID Connect (Shopify Customer Accounts) for transacting; read-only
+    catalog browsing requires no auth.
+  reference: authentication/outlier-authentication.yml
+agent_commerce:
+  protocol: Universal Commerce Protocol (UCP)
+  discovery: https://www.outlier.org/.well-known/ucp
+  mcp_endpoint: https://www.outlier.org/api/ucp/mcp
+  buyer_approval_required: true
+  invariant: >-
+    Agents must not complete payment without explicit, contemporaneous buyer
+    consent. Where consent cannot be obtained, route via the Shop skill /
+    Shop Pay instead.
+pagination:
+  style: shopify-storefront
+  notes: >-
+    Product and collection data is paginated via Shopify JSON endpoints, e.g.
+    /collections/{handle}/products.json and /products/{handle}.json; search via
+    /search?q={query}&type=product.
+rate_limiting:
+  style: http-429
+  notes: The UCP MCP endpoint is rate-limited per IP; agents must back off on HTTP 429 responses.
+buyer_context:
+  notes: >-
+    Agents should pass context.address_country and context.currency for accurate
+    pricing and availability.
+versioning:
+  scheme: dated
+  reference: lifecycle/outlier-lifecycle.yml
+cross_links:
+  authentication: authentication/outlier-authentication.yml
+  scopes: scopes/outlier-scopes.yml
+  lifecycle: lifecycle/outlier-lifecycle.yml
+  mcp: mcp/outlier-mcp.yml

@@ -1,7 +1,36 @@
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 11
+  pass: local-v1
 aid: outlier
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/outlier.png
 name: Outlier
-description: 'Outlier is a company surfaced as a portfolio company of gv and added to the API Evangelist
-  network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Outlier is a consumer online-education company that delivers college-level,
+  for-credit courses (Calculus, Psychology, Financial Accounting, Computer
+  Science, Astronomy, Business, and Professional Communication) to high-school
+  and independent learners through dual-enrollment partnerships, offering
+  transferable credit from an accredited university. Outlier was surfaced as a
+  portfolio company of GV (Google Ventures). Its public storefront at
+  www.outlier.org runs on Shopify and exposes a real agent-commerce surface:
+  an llms.txt / agents.md instruction file, a Universal Commerce Protocol (UCP)
+  merchant profile at /.well-known/ucp, a hosted UCP shopping MCP endpoint at
+  /api/ucp/mcp, and Shopify Customer Account OpenID Connect discovery at
+  /.well-known/openid-configuration. This profile was enriched from those
+  publicly served surfaces; there is no first-party developer/API program.
 url: https://raw.githubusercontent.com/api-evangelist/outlier/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,16 +40,65 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Consumer
-apis: []
+- Education
+- Online Learning
+- Dual Enrollment
+- E-Commerce
+- Shopify
+- Agent Commerce
+- MCP
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Outlier UCP Agent Commerce (MCP)
+  description: >-
+    Shopify-native Universal Commerce Protocol (UCP) shopping surface for the
+    Outlier storefront. Agents discover capabilities at /.well-known/ucp and
+    transact via the hosted MCP endpoint (search_catalog, create_cart,
+    create_checkout, update_checkout, complete_checkout). Checkout requires
+    contemporaneous buyer approval. Read-only browsing is available without auth
+    via Shopify product/collection JSON endpoints. Customer authentication uses
+    Shopify Customer Account OpenID Connect.
+  humanURL: https://www.outlier.org/agents.md
+  baseURL: https://www.outlier.org/api/ucp/mcp
+  properties:
+  - type: MCPServer
+    url: mcp/outlier-mcp.yml
+  - type: Authentication
+    url: authentication/outlier-authentication.yml
+  - type: OAuthScopes
+    url: scopes/outlier-scopes.yml
 common:
+- type: DomainSecurity
+  url: security/outlier-domain-security.yml
 - type: Website
-  url: http://outlier.org
+  url: https://www.outlier.org
+- type: Documentation
+  url: https://www.outlier.org/agents.md
+- type: Login
+  url: https://www.outlier.org/account
+- type: TermsOfService
+  url: https://www.outlier.org/pages/terms
+- type: PrivacyPolicy
+  url: https://www.outlier.org/policies/privacy-policy
+- type: LLMsTxt
+  url: llms/outlier-llms.txt
+- type: WellKnown
+  url: well-known/outlier-well-known.yml
+- type: MCPServer
+  url: mcp/outlier-mcp.yml
+- type: Authentication
+  url: authentication/outlier-authentication.yml
+- type: OAuthScopes
+  url: scopes/outlier-scopes.yml
+- type: Conventions
+  url: conventions/outlier-conventions.yml
+- type: Lifecycle
+  url: lifecycle/outlier-lifecycle.yml

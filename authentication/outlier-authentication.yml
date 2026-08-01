@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.outlier.org/.well-known/openid-configuration
+docs: https://www.outlier.org/agents.md
+summary:
+  types:
+  - openIdConnect
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  pkce: true
+  notes: >-
+    Customer authentication is delegated to the Shopify Customer Account API
+    (issuer https://shopify.com/authentication/40681930915). Read-only catalog
+    browsing (product/collection JSON) requires no authentication.
+schemes:
+- name: ShopifyCustomerAccountOIDC
+  type: openIdConnect
+  openIdConnectUrl: https://www.outlier.org/.well-known/openid-configuration
+  issuer: https://shopify.com/authentication/40681930915
+  authorizationUrl: https://shopify.com/authentication/40681930915/oauth/authorize
+  tokenUrl: https://shopify.com/authentication/40681930915/oauth/token
+  end_session_endpoint: https://shopify.com/authentication/40681930915/logout
+  jwks_uri: https://shopify.com/authentication/40681930915/.well-known/jwks.json
+  grant_types:
+  - authorization_code
+  - refresh_token
+  - urn:ietf:params:oauth:grant-type:jwt-bearer
+  response_types:
+  - code
+  code_challenge_methods:
+  - S256
+  token_endpoint_auth_methods:
+  - client_secret_basic
+  id_token_signing_alg:
+  - RS256
+  sources:
+  - well-known/outlier-openid-configuration.json

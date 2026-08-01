@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: live probe of https://www.outlier.org/.well-known/*
+host: https://www.outlier.org
+notes: >-
+  Storefront runs on Shopify. The openid-configuration / oauth-authorization-server
+  documents are Shopify Customer Account API discovery (issuer shopify.com);
+  the ucp document is the store's Universal Commerce Protocol merchant profile.
+documents:
+- path: /.well-known/openid-configuration
+  status: 200
+  file: outlier-openid-configuration.json
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: outlier-oauth-authorization-server.json
+- path: /.well-known/ucp
+  status: 200
+  file: outlier-ucp.json
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
