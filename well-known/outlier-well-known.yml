@@ -2,23 +2,29 @@ generated: '2026-07-20'
 method: searched
 source: live probe of https://www.outlier.org/.well-known/*
 host: https://www.outlier.org
-notes: >-
-  Storefront runs on Shopify. The openid-configuration / oauth-authorization-server
-  documents are Shopify Customer Account API discovery (issuer shopify.com);
-  the ucp document is the store's Universal Commerce Protocol merchant profile.
-documents:
-- path: /.well-known/openid-configuration
-  status: 200
-  file: outlier-openid-configuration.json
-- path: /.well-known/oauth-authorization-server
-  status: 200
-  file: outlier-oauth-authorization-server.json
-- path: /.well-known/ucp
-  status: 200
-  file: outlier-ucp.json
-- path: /.well-known/security.txt
-  status: 404
-- path: /.well-known/api-catalog
-  status: 404
-- path: /.well-known/ai-plugin.json
-  status: 404
+notes: Storefront runs on Shopify. The openid-configuration / oauth-authorization-server documents are
+  Shopify Customer Account API discovery (issuer shopify.com); the ucp document is the store's Universal
+  Commerce Protocol merchant profile.
+hosts:
+- host: https://www.outlier.org
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: outlier-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: outlier-oauth-authorization-server.json
+  - path: /.well-known/ucp
+    status: 200
+    file: outlier-ucp.json
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.
