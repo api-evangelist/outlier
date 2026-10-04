@@ -96,6 +96,9 @@ apis:
     url: authentication/outlier-authentication.yml
   - type: OAuthScopes
     url: scopes/outlier-scopes.yml
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 common:
 - type: DomainSecurity
   url: security/outlier-domain-security.yml
